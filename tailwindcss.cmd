@@ -1,0 +1,1 @@
+tailwindcss --input src/main/resources/static/css/dsp-calculator.css --output src/main/resources/static/css/dsp-calculator.min.css --minify

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Accueil - Dyson Sphere Project Calculator</title>
+	<link th:href="@{css/dsp-calculator.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="content">
+		<div>
+		    <h1 class="mb-5 text-3xl font-extrabold">Accueil</h1>
+		    <p>Bienvenue sur <b class="app-name"><th:block th:text="${appName}">??</th:block></b>, l'application de visualisation des données de Dyson Sphere Program.</p>
+		    <p>Il y a actuellement <th:block th:text="${nbBuildings}">??</th:block> infrastructures, <th:block th:text="${nbComponents}">??</th:block> composants et ressources, et <th:block th:text="${nbRecipes}">??</th:block> recettes.</p>
+		    <p>Quelle action souhaitez-vous effectuer&nbsp;?</p>
+		    <ul class="list-disc text-gray-900 ml-10">
+		    	<li><a class="homepage-link" th:href="@{/buildings}">Visualiser les infrastructures</a></li>
+		    	<li><a class="homepage-link" th:href="@{/components}">Visualiser les composants et ressources</a></li>
+		    	<li><a class="homepage-link" th:href="@{/recipes}">Visualiser les recettes</a></li>
+		    	<li><a class="homepage-link" th:href="@{/search}">Afficher les informations d'un élément en particulier</a></li>
+		    </ul>
+	    </div>
+    </div>
+</body>
+</html>

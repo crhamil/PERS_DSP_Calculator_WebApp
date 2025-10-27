@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Composants - Dyson Sphere Project Calculator</title>
+	<link th:href="@{css/dsp-calculator.min.css}" rel="stylesheet">
+	<link th:href="@{js/DataTables/datatables.min.css}" rel="stylesheet">
+	<script th:src="@{js/DataTables/datatables.min.js}"></script>
+	<script th:src="@{js/util.min.js}"></script>
+</head>
+<body>
+	<div class="content">
+		<div>
+			<h1 class="mb-5 text-3xl font-extrabold">Composants</h1>
+			<p>Vous vous trouvez sur la page de visualisation des composants et ressources de <b class="app-name"><th:block th:text="${appName}">??</th:block></b>, l'application de visualisation des données de Dyson Sphere Program.</p>
+			<p>Il y a actuellement <th:block th:text="${nbComponents}">??</th:block> composants et ressources.</p>
+			<table id="dt_table" class="display">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Type</th>
+			    	</tr>
+				</thead>
+				<tbody>
+					<tr th:each="c : ${components}">
+						<td th:text="${c.getValue().getName()}"/>
+						<td th:text="${c.getValue().getClassStringPretty()}"/>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>-- Nom --</td>
+						<td>-- Type --</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+	
+	<script>
+		$(function() {
+			var table = new DataTable("#dt_table", {
+				language: { url: "[[@{/js/DataTables/plug-ins/2.3.4/i18n/fr-FR.json}]]" },
+				pageLength: 30,
+				lengthChange: false,
+				initComplete: function () {
+					this.api().columns().every(function() { setColumnSearchSelector(this) });
+				}
+			});
+		});
+	</script>
+</body>
+</html>

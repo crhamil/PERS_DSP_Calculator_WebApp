@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@layer base {
+	h1, h2, h3, h4, h5, p {
+		@apply text-gray-900;
+	}
+	
+	body {
+		@apply bg-indigo-50;
+	}
+}
+
+.app-name {
+	@apply font-bold underline decoration-2 decoration-indigo-500;
+}
+
+.homepage-link {
+	@apply px-1 text-indigo-600 hover:underline hover:decoration-2 hover:text-indigo-800 hover:bg-indigo-100;
+}
+
+.content {
+	@apply mx-auto p-10 my-10 max-w-4xl bg-gray-50 rounded-lg shadow-xl overflow-hidden;
+}

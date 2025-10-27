@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Recettes - Dyson Sphere Project Calculator</title>
+	<link th:href="@{css/dsp-calculator.min.css}" rel="stylesheet">
+	<link th:href="@{js/DataTables/datatables.min.css}" rel="stylesheet">
+	<script th:src="@{js/DataTables/datatables.min.js}"></script>
+	<script th:src="@{js/util.min.js}"></script>
+</head>
+<body>
+	<div class="content">
+		<div>
+			<h1 class="mb-5 text-3xl font-extrabold">Recettes</h1>
+			<p>Vous vous trouvez sur la page de visualisation des recettes de <b class="app-name"><th:block th:text="${appName}">??</th:block></b>, l'application de visualisation des données de Dyson Sphere Program.</p>
+			<p>Il y a actuellement <th:block th:text="${nbRecipes}">??</th:block> recettes.</p>
+			<table id="dt_table" class="display nowrap">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Type</th>
+						<th>Éléments produits</th>
+						<th class="max-w-[50px]">Ingrédients</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="r : ${recipes}">
+						<td th:text="${r.getValue().getName()}"/>
+						<td>
+						<th:block th:each="o, iter : ${r.getValue().getOutputClassStringPretty()}">
+							<th:block th:text="${o}"></th:block><th:block th:if="${!iter.last}">, </th:block>
+						</th:block>
+			    		</td>
+						<td>
+							<th:block th:each="o, iter : ${r.getValue().getOutput()}">
+								<th:block th:text="${o.getKey().getName()}"></th:block><th:block th:if="${!iter.last}">, </th:block>
+							</th:block>
+						</td>
+						<td class="max-w-[50px]">
+							<th:block th:each="i, iter : ${r.getValue().getIngredients()}">
+								<th:block th:text="${i.getKey().getName()}"></th:block><th:block th:if="${!iter.last}">, </th:block>
+							</th:block>
+						</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>-- Nom --</td>
+						<td>-- Type --</td>
+						<td>-- Éléments produits --</td>
+						<td class="max-w-[50px]">-- Ingrédients --</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+	
+	<script>
+		$(function() {
+			var table = new DataTable("#dt_table", {
+				language: { url: "[[@{/js/DataTables/plug-ins/2.3.4/i18n/fr-FR.json}]]" },
+				pageLength: 30,
+				lengthChange: false,
+				scrollX: true,
+				initComplete: function () {
+					this.api().columns().every(function() { setColumnSearchSelector(this) });
+				}
+			});
+		});
+	</script>
+</body>
+</html>
