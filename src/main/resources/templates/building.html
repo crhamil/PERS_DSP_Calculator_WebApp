@@ -15,11 +15,12 @@
 			<span>Retour</span>
 		</a>
 		<div>
-			<h1 class="mb-5 text-3xl font-extrabold" th:text="${bName}"/>
-			<p th:text="${bType}"/>
-			<p th:text="${bId}"/>
-			<div th:replace="${infoFragment} ? ~{fragments/building-info :: ${infoFragment}} : _">
-				
+			<h1 class="mb-5 text-3xl font-extrabold">Fiche bâtiment</h1>
+			<div class="font-[Ubuntu_Sans_Mono] grid grid-cols-1 md:grid-cols-2">
+				<p class="md:col-start-1 md:row-start-1">Identifiant&nbsp;: <th:block th:text="${bId}"/></p>
+				<p class="md:col-start-1 md:row-start-2">Nom commun&nbsp;: <th:block th:text="${bName}"/></p>
+				<p class="md:col-start-2 md:row-start-2">Catégorie&nbsp;: <th:block th:text="${bType}"/></p>
+				<th:block th:replace="${infoFragment} ? ~{fragments/building-info :: ${infoFragment}} : _"></th:block>
 			</div>
 		</div>
 	</div>

@@ -1,33 +1,31 @@
 <html lang="fr" xmlns:th="https://www.thymeleaf.org">
 	<!-- Fragment for conveyor belts -->
-	<div th:fragment="conveyor-belt">
-		<p>Vitesse : <span th:text="${b.speed}"></span></p>
-	</div>
+	<th:block th:fragment="conveyor-belt">
+		<p class="md:col-start-1 md:row-start-3">Vitesse&nbsp;: <th:block th:text="${b.speed}"/></p>
+	</th:block>
 	<!-- Fragment for factories -->
-	<div th:fragment="factory">
-		<p>Vitesse : <span th:text="${b.speed}"></span></p>
-		<p>Usage : <span th:text="${b.usage}"></span></p>
-		<p>Drain : <span th:text="${b.drain}"></span></p>
-	</div>
+	<th:block th:fragment="factory">
+		<p class="md:col-start-1 md:row-start-3">Vitesse&nbsp;: <th:block th:text="${b.speed}"/></p>
+		<p class="md:col-start-1 md:row-start-4">Consommation&nbsp;: <th:block th:text="${b.usage}"/> kW</p>
+		<p class="md:col-start-1 md:row-start-5">Pertes&nbsp;: <th:block th:text="${b.drain > 0 ? b.drain + ' kW' : 'NC'}"/></p>
+	</th:block>
 	<!-- Fragment for electric and non-electric extractors -->
-	<div th:fragment="extractor">
-		<p>Vitesse : <span th:text="${b.speed}"></span></p>
-		<p>Usage : <span th:text="${b.usage} > 0 ? ${b.usage} : 'NC'"></span></p>
-		<p>Drain : <span th:text="${b.drain} > 0 ? ${b.drain} : 'NC'"></span></p>
-	</div>
+	<th:block th:fragment="extractor">
+		<p class="md:col-start-1 md:row-start-3">Vitesse&nbsp;: <th:block th:text="${b.speed}"/></p>
+		<p class="md:col-start-1 md:row-start-4">Consommation&nbsp;: <th:block th:text="${b.usage > 0 ? b.usage + ' kW' : 'NC'}"/></p>
+		<p class="md:col-start-1 md:row-start-5">Pertes&nbsp;: <th:block th:text="${b.drain > 0 ? b.drain + ' kW' : 'NC'}"/></p>
+	</th:block>
 	<!-- Fragment for electric power plants -->
 	<div th:fragment="electric-power-plant">
-		<p>Value : <span th:text="${b.value}"></span></p>
+		<p class="md:col-start-1 md:row-start-3">Value&nbsp;: <th:block th:text="${b.value}"/></p>
 	</div>
 	<!-- Fragment for non-electric power plants -->
-	<div th:fragment="non-electric-power-plant">
-		<p>Value : <span th:text="${b.value}"></span></p>
-		<p>Carburant : <span th:text="${b.category}"></span></p>
-		<p>Carburants compatibles :</p>
-		<ul>
-		<li th:each="f : ${b.possibleFuels}">
-			<th:block th:text="${f.name}"></th:block>
-		</li>
+	<th:block th:fragment="non-electric-power-plant">
+		<p class="md:col-start-1 md:row-start-3">Énergie produite&nbsp;: <th:block th:text="${b.value}"/> kW</p>
+		<p class="md:col-start-2 md:row-start-3">Type de carburant&nbsp;: <th:block th:text="${b.category}"/></p>
+		<p class="md:col-span-2">Carburants compatibles&nbsp;:</p>
+		<ul class='list-["–"] list-outside pl-10'>
+			<li class="pl-5" th:each="f : ${b.possibleFuels}" th:text="${f.name}"></li>
 		</ul>
-	</div>
+	</th:block>
 </html>
