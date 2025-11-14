@@ -5,7 +5,9 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
 import com.dsp_calculator.dsp_calculator.models.components.Building;
+import com.dsp_calculator.dsp_calculator.models.components.buildings.Burner;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.ConveyorBelt;
+import com.dsp_calculator.dsp_calculator.models.components.buildings.ElectricProduction;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.Extractor;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.Factory;
 import com.dsp_calculator.dsp_calculator.utilities.Game;
@@ -21,6 +23,10 @@ public class BuildingService {
 			return "conveyor-belt";
 		} else if (b instanceof Extractor) {
 			return "extractor";
+		} else if (b instanceof ElectricProduction) {
+			return "electric-power-plant";
+		} else if (b instanceof Burner) {
+			return "non-electric-power-plant";
 		} else if (b instanceof Factory) {
 			return "factory";
 		} else {

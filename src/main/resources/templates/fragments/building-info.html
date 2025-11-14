@@ -1,4 +1,4 @@
-<html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
 	<!-- Fragment for conveyor belts -->
 	<div th:fragment="conveyor-belt">
 		<p>Vitesse : <span th:text="${b.speed}"></span></p>
@@ -14,5 +14,20 @@
 		<p>Vitesse : <span th:text="${b.speed}"></span></p>
 		<p>Usage : <span th:text="${b.usage} > 0 ? ${b.usage} : 'NC'"></span></p>
 		<p>Drain : <span th:text="${b.drain} > 0 ? ${b.drain} : 'NC'"></span></p>
+	</div>
+	<!-- Fragment for electric power plants -->
+	<div th:fragment="electric-power-plant">
+		<p>Value : <span th:text="${b.value}"></span></p>
+	</div>
+	<!-- Fragment for non-electric power plants -->
+	<div th:fragment="non-electric-power-plant">
+		<p>Value : <span th:text="${b.value}"></span></p>
+		<p>Carburant : <span th:text="${b.category}"></span></p>
+		<p>Carburants compatibles :</p>
+		<ul>
+		<li th:each="f : ${b.possibleFuels}">
+			<th:block th:text="${f.name}"></th:block>
+		</li>
+		</ul>
 	</div>
 </html>
