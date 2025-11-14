@@ -69,10 +69,12 @@ public class DSPParser implements ApplicationRunner {
 		/* Extracteurs */
 		/* Spécificité : <mining><speed></speed></mining> */
 		if (el_mining_speed != null) {
-			String speed = el_mining_speed.getTextContent();
+			String speed = getTextContentSafe(el_mining_speed);
 			String usage = getTextContentSafe(el_usage);
 			String drain = getTextContentSafe(el_drain);
-			Extractor extractor = ExtractorFactory.getExtractor(id, name, row, stack, parseFloatSafe(drain), parseIntSafe(usage), parseIntSafe(speed));
+			String modules = getTextContentSafe(el_modules);
+			
+			Extractor extractor = ExtractorFactory.getExtractor(id, name, row, stack, parseFloatSafe(speed), parseIntSafe(usage), parseIntSafe(drain), parseIntSafe(modules));
 			game.addGameItem(id, extractor);
 			game.addBuilding(id, extractor);
 			game.addExtractor(id, extractor);

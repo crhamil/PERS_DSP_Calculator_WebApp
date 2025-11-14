@@ -13,9 +13,9 @@
 	<div class="content">
 		<div>
 			<h1 class="mb-5 text-3xl font-extrabold">Composants</h1>
-			<p>Vous vous trouvez sur la page de visualisation des composants et ressources de <b class="app-name"><th:block th:text="${appName}">??</th:block></b>, l'application de visualisation des données de Dyson Sphere Program.</p>
+			<p>Vous vous trouvez sur la page de visualisation des composants et ressources de <a class="app-name" th:href="@{/}"><th:block th:text="${appName}">??</th:block></a>, l'application de visualisation des données de Dyson Sphere Program.</p>
 			<p>Il y a actuellement <th:block th:text="${nbComponents}">??</th:block> composants et ressources.</p>
-			<table id="dt_table" class="display">
+			<table id="dt_table" class="display overview-table">
 				<thead>
 					<tr>
 						<th>Nom</th>

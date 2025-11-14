@@ -13,31 +13,32 @@
 	<div class="content">
 		<div>
 			<h1 class="mb-5 text-3xl font-extrabold">Recettes</h1>
-			<p>Vous vous trouvez sur la page de visualisation des recettes de <b class="app-name"><th:block th:text="${appName}">??</th:block></b>, l'application de visualisation des données de Dyson Sphere Program.</p>
+			<p>Vous vous trouvez sur la page de visualisation des recettes de <a class="app-name" th:href="@{/}"><th:block th:text="${appName}">??</th:block></a>, l'application de visualisation des données de Dyson Sphere Program.</p>
 			<p>Il y a actuellement <th:block th:text="${nbRecipes}">??</th:block> recettes.</p>
-			<table id="dt_table" class="display nowrap">
+			<!-- TODO: Légers problèmes d'affichage (largeur) à corriger -->
+			<table id="dt_table" class="display w-full overview-table">
 				<thead>
 					<tr>
-						<th>Nom</th>
-						<th>Type</th>
-						<th>Éléments produits</th>
-						<th class="max-w-[50px]">Ingrédients</th>
+						<th class="text-nowrap">Nom</th>
+						<th class="text-nowrap">Type</th>
+						<th class="text-nowrap">Éléments produits</th>
+						<th class="text-wrap">Ingrédients</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="r : ${recipes}">
-						<td th:text="${r.getValue().getName()}"/>
-						<td>
+						<td class="text-nowrap" th:text="${r.getValue().getName()}"/>
+						<td class="text-nowrap">
 						<th:block th:each="o, iter : ${r.getValue().getOutputClassStringPretty()}">
 							<th:block th:text="${o}"></th:block><th:block th:if="${!iter.last}">, </th:block>
 						</th:block>
 			    		</td>
-						<td>
+						<td class="text-nowrap">
 							<th:block th:each="o, iter : ${r.getValue().getOutput()}">
 								<th:block th:text="${o.getKey().getName()}"></th:block><th:block th:if="${!iter.last}">, </th:block>
 							</th:block>
 						</td>
-						<td class="max-w-[50px]">
+						<td class="text-wrap">
 							<th:block th:each="i, iter : ${r.getValue().getIngredients()}">
 								<th:block th:text="${i.getKey().getName()}"></th:block><th:block th:if="${!iter.last}">, </th:block>
 							</th:block>
@@ -46,10 +47,10 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td>-- Nom --</td>
-						<td>-- Type --</td>
-						<td>-- Éléments produits --</td>
-						<td class="max-w-[50px]">-- Ingrédients --</td>
+						<td class="text-nowrap">-- Nom --</td>
+						<td class="text-nowrap">-- Type --</td>
+						<td class="text-nowrap">-- Éléments produits --</td>
+						<td class="text-wrap">-- Ingrédients --</td>
 					</tr>
 				</tfoot>
 			</table>

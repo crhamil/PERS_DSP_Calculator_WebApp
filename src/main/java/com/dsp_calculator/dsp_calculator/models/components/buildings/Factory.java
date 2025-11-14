@@ -24,6 +24,11 @@ public class Factory extends Building {
 	public String getClassStringPretty() { return "Usine électrique"; }
 	public String toString() { return "Usine électrique " +  id + " : " + name; }
 	
+	public float getSpeed() { return speed; }
+	public int getUsage() { return usage; }
+	public int getDrain() { return drain; }
+	public int getModules() { return modules; }
+	
 	public ArrayList<Recipe> getRecipes() {
 		Game game = Game.getInstance();
 		ArrayList<Recipe> gameRecipes = game.getList(game.getRecipes().values(), null);

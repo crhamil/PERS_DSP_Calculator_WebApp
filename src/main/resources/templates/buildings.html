@@ -4,19 +4,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>Bâtiments - Dyson Sphere Project Calculator</title>
-	<link th:href="@{css/dsp-calculator.min.css}" rel="stylesheet">
-	<link th:href="@{js/DataTables/datatables.min.css}" rel="stylesheet">
-	<script th:src="@{js/DataTables/datatables.min.js}"></script>
-	<script th:src="@{js/util.min.js}"></script>
+	<link th:href="@{/css/dsp-calculator.min.css}" rel="stylesheet">
+	<link th:href="@{/js/DataTables/datatables.min.css}" rel="stylesheet">
+	<script th:src="@{/js/DataTables/datatables.min.js}"></script>
+	<script th:src="@{/js/util.min.js}"></script>
 </head>
 <body>
 	<div class="content">
 		<div>
 			<h1 class="mb-5 text-3xl font-extrabold">Bâtiments</h1>
-			<p>Vous vous trouvez sur la page de visualisation des bâtiments de <b class="app-name"><th:block th:text="${appName}">??</th:block></b>, l'application de visualisation des données de Dyson Sphere Program.</p>
+			<p>Vous vous trouvez sur la page de visualisation des bâtiments de <a class="app-name" th:href="@{/}" th:text="${appName}"></a>, l'application de visualisation des données de Dyson Sphere Program.</p>
 			<p>Il y a actuellement <th:block th:text="${nbBuildings}">??</th:block> infrastructures.</p>
-			<table id="dt_table" class="display">
-				<thead>
+			<table id="dt_table" class="display overview-table">
+				<thead class="text-sm uppercase">
 					<tr>
 						<th>Nom</th>
 						<th>Catégorie</th>
@@ -24,8 +24,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="b : ${buildings}">
-						<td th:text="${b.getValue().getName()}" />
-						<td th:text="${b.getValue().getClassStringPretty()}" />
+						<td><a th:href="@{/buildings/{id}(id=${b.value.id})}" th:text="${b.value.name}"></a></td>
+						<td th:text="${b.value.classStringPretty}" />
 					</tr>
 				</tbody>
 				<tfoot>

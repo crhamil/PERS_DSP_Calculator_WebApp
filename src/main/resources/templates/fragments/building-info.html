@@ -1,0 +1,18 @@
+<html>
+	<!-- Fragment for conveyor belts -->
+	<div th:fragment="conveyor-belt">
+		<p>Vitesse : <span th:text="${b.speed}"></span></p>
+	</div>
+	<!-- Fragment for factories -->
+	<div th:fragment="factory">
+		<p>Vitesse : <span th:text="${b.speed}"></span></p>
+		<p>Usage : <span th:text="${b.usage}"></span></p>
+		<p>Drain : <span th:text="${b.drain}"></span></p>
+	</div>
+	<!-- Fragment for electric and non-electric extractors -->
+	<div th:fragment="extractor">
+		<p>Vitesse : <span th:text="${b.speed}"></span></p>
+		<p>Usage : <span th:text="${b.usage} > 0 ? ${b.usage} : 'NC'"></span></p>
+		<p>Drain : <span th:text="${b.drain} > 0 ? ${b.drain} : 'NC'"></span></p>
+	</div>
+</html>

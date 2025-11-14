@@ -17,6 +17,7 @@ function setColumnSearchSelector(c) {
     });
 	// Create select element
 	let select = document.createElement("select");
+	select.className = select.className = "column-select";
 	select.add(new Option($(column.footer()).text(), ""));
 	column.footer().replaceChildren(select);
 	// Apply listener for user change in value

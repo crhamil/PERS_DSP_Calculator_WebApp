@@ -18,7 +18,7 @@ public class DSPComponent implements Comparable<DSPComponent> {
 	public String toString() { return getClassStringPretty() + " " + id + " : " + name; }
 	public String getClassStringPretty() { return "Composant"; }
 	
-	/* Implémente Comparable par facilité (dans la majorité des cas, on voudra getName croissant
+	/* Implémente Comparable par facilité (dans la majorité des cas, on voudra getName croissant)
 	 * Un comparateur personnalisé sera utilisé en cas de besoin */
 	@Override
 	public int compareTo(DSPComponent c) { return name.compareTo(c.getName()); }

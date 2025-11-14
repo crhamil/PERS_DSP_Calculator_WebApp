@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Bâtiments - Dyson Sphere Project Calculator</title>
+	<link th:href="@{/css/dsp-calculator.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="content">
+	    <a th:href="@{/buildings}" class="btn-return">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+				<path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+			</svg>
+			<span>Retour</span>
+		</a>
+		<div>
+			<h1 class="mb-5 text-3xl font-extrabold" th:text="${bName}"/>
+			<p th:text="${bType}"/>
+			<p th:text="${bId}"/>
+			<div th:replace="${infoFragment} ? ~{fragments/building-info :: ${infoFragment}} : _">
+				
+			</div>
+		</div>
+	</div>
+	
+	<script>
+
+	</script>
+</body>
+</html>
