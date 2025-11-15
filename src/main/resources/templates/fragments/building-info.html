@@ -25,7 +25,7 @@
 		<p class="md:col-start-2 md:row-start-3">Type de carburant&nbsp;: <th:block th:text="${b.category}"/></p>
 		<p class="md:col-span-2">Carburants compatibles&nbsp;:</p>
 		<ul class='list-["–"] list-outside pl-10'>
-			<li class="pl-5" th:each="f : ${b.possibleFuels}" th:text="${f.name}"></li>
+			<li class="pl-5" th:each="f : ${b.possibleFuels}"><a th:href="@{/components/{id}(id=${f.id})}" th:text="${f.name}"></a></li>
 		</ul>
 	</th:block>
 </html>

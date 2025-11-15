@@ -6,7 +6,7 @@
 		<div class="md:col-span-2">
 			<p>Peut être obtenu grâce aux bâtiments&nbsp;:</p>
 			<ul class='list-["–"] list-outside pl-10'>
-				<li class="pl-5" th:each="b : ${c.miners}" th:text="${b.name}"/>
+				<li class="pl-5" th:each="b : ${c.miners}"><a th:href="@{/buildings/{id}(id=${b.id})}" th:text="${b.name}"></a></li>
 			</ul>
 		</div>
 	</th:block>
@@ -20,8 +20,8 @@
 		<div class="md:col-span-2">
 			<p>Peut être obtenu grâce aux bâtiments&nbsp;:</p>
 			<ul class='list-["–"] list-outside pl-10'>
-				<li class="pl-5" th:each="b : ${c.miners}" th:text="${b.name}"/>
+				<li class="pl-5" th:each="b : ${c.miners}"><a th:href="@{/buildings/{id}(id=${b.id})}" th:text="${b.name}"></a></li>
 			</ul>
-		</div>	
+		</div>
 	</th:block>
 </html>

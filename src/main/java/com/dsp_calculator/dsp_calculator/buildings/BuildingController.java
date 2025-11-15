@@ -15,22 +15,22 @@ import com.dsp_calculator.dsp_calculator.models.components.Building;
 @RequestMapping("/buildings")
 public class BuildingController {
 	@Value("${spring.application.name}")
-    String appName;
+	String appName;
 	
 	private final BuildingService service;
 	public BuildingController(BuildingService s) { service = s; }
 	
 	@RequestMapping({"", "/"})
-    public String buildingsListing(Model model) {
+	public String buildingsListing(Model model) {
 		HashMap<String, Building> buildings = service.getAllBuildings();
 		int nbBuildings = service.getBuildingCount();
 		System.out.println("....... " + nbBuildings + " bâtiments dans BuildingController");
 		
-        model.addAttribute("appName", appName);
-        model.addAttribute("buildings", buildings);
-        model.addAttribute("nbBuildings", nbBuildings);
-        return "buildings";
-    }
+		model.addAttribute("appName", appName);
+		model.addAttribute("buildings", buildings);
+		model.addAttribute("nbBuildings", nbBuildings);
+		return "buildings";
+	}
 	
 	@GetMapping({"/{id}", "/{id}/"})
     public String buildingDetails(Model model, @PathVariable String id) {
@@ -41,13 +41,13 @@ public class BuildingController {
 		String buildingType = building.getClassStringPretty();
 		String buildingTypeInfo = service.getBuildingClassInfo(building);
 		
+		model.addAttribute("appName", appName);
 		model.addAttribute("b", building);
-        model.addAttribute("appName", appName);
-        model.addAttribute("bId", buildingId);
-        model.addAttribute("bName", buildingName);
-        model.addAttribute("bType", buildingType);
-        model.addAttribute("infoFragment", buildingTypeInfo);
-        return "building";
-    }
+		model.addAttribute("bId", buildingId);
+		model.addAttribute("bName", buildingName);
+		model.addAttribute("bType", buildingType);
+		model.addAttribute("infoFragment", buildingTypeInfo);
+		return "building";
+	}
 	
 }
