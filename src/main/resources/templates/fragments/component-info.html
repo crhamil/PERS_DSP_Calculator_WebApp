@@ -1,0 +1,27 @@
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+	<!-- Fragment for fuels (resource) -->
+	<th:block th:fragment="fuel-resource">
+		<p class="md:col-start-1 md:row-start-3">Origine&nbsp;: <th:block th:text="${c.type}"/></p>
+		<p class="md:col-start-2 md:row-start-3">Énergie produite&nbsp;: <th:block th:text="${c.value}"/> kJ</p>
+		<div class="md:col-span-2">
+			<p>Peut être obtenu grâce aux bâtiments&nbsp;:</p>
+			<ul class='list-["–"] list-outside pl-10'>
+				<li class="pl-5" th:each="b : ${c.miners}" th:text="${b.name}"/>
+			</ul>
+		</div>
+	</th:block>
+	<!-- Fragment for fuels (component) -->
+	<th:block th:fragment="fuel-component">
+		<p class="md:col-start-1 md:row-start-3">Origine&nbsp;: <th:block th:text="${c.type}"/></p>
+		<p class="md:col-start-2 md:row-start-3">Énergie produite&nbsp;: <th:block th:text="${c.value}"/> kJ</p>
+	</th:block>
+	<!-- Fragment for resources -->
+	<th:block th:fragment="resource">
+		<div class="md:col-span-2">
+			<p>Peut être obtenu grâce aux bâtiments&nbsp;:</p>
+			<ul class='list-["–"] list-outside pl-10'>
+				<li class="pl-5" th:each="b : ${c.miners}" th:text="${b.name}"/>
+			</ul>
+		</div>	
+	</th:block>
+</html>
