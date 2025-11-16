@@ -27,20 +27,18 @@
 				</thead>
 				<tbody>
 					<tr th:each="r : ${recipes}">
-						<td class="text-nowrap" th:text="${r.getValue().getName()}"/>
+						<td class="text-nowrap"><a th:href="@{/recipes/{id}(id=${r.value.id})}" th:text="${r.value.name}"></a></td>
 						<td class="text-nowrap">
-						<th:block th:each="o, iter : ${r.getValue().getOutputClassStringPretty()}">
-							<th:block th:text="${o}"></th:block><th:block th:if="${!iter.last}">, </th:block>
-						</th:block>
+						<th:block th:text="${#strings.listJoin(r.value.outputClassStringPretty, ', ')}"></th:block>
 			    		</td>
 						<td class="text-nowrap">
-							<th:block th:each="o, iter : ${r.getValue().getOutput()}">
-								<th:block th:text="${o.getKey().getName()}"></th:block><th:block th:if="${!iter.last}">, </th:block>
+							<th:block th:each="i, iter : ${r.value.output}">
+								<th:block th:text="${i.ingredient.name}"></th:block><th:block th:if="${!iter.last}">, </th:block>
 							</th:block>
 						</td>
 						<td class="text-wrap">
-							<th:block th:each="i, iter : ${r.getValue().getIngredients()}">
-								<th:block th:text="${i.getKey().getName()}"></th:block><th:block th:if="${!iter.last}">, </th:block>
+							<th:block th:each="i, iter : ${r.value.ingredients}">
+								<th:block th:text="${i.ingredient.name}"></th:block><th:block th:if="${!iter.last}">, </th:block>
 							</th:block>
 						</td>
 					</tr>

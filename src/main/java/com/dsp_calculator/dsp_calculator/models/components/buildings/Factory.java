@@ -41,10 +41,10 @@ public class Factory extends Building {
 		return bRecipes;
 	}
 	
-	public int getElectricConsumption() {
-		/* TODO: si usine non-utilisée -> return drain, sinon -> return usage */
+	/* public int getElectricConsumption() {
+		// TODO: si usine non-utilisée -> return drain, sinon -> return usage
 		if (true) return usage;
 		return drain;
-	}
+	} */
 
 }

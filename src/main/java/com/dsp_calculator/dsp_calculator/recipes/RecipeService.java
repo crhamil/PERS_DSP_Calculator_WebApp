@@ -12,5 +12,5 @@ public class RecipeService {
 	
 	public HashMap<String, Recipe> getAllRecipes() { return Game.getInstance().getRecipes(); }
 	public int getRecipeCount() { return getAllRecipes().size(); }
-	
+	public Recipe getRecipe(String id) { return Game.getInstance().getRecipe(id); }
 }

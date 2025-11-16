@@ -9,7 +9,6 @@ import static com.dsp_calculator.dsp_calculator.utilities.Utilities.parseIntSafe
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -34,6 +33,7 @@ import com.dsp_calculator.dsp_calculator.models.components.buildings.ConveyorBel
 import com.dsp_calculator.dsp_calculator.models.components.buildings.Extractor;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.Factory;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.PowerPlant;
+import com.dsp_calculator.dsp_calculator.models.recipes.Ingredient;
 import com.dsp_calculator.dsp_calculator.models.recipes.Recipe;
 import com.dsp_calculator.strategies.factory.ComponentFactory;
 import com.dsp_calculator.strategies.factory.ExtractorFactory;
@@ -209,18 +209,18 @@ public class DSPParser implements ApplicationRunner {
 					producers.add(producer);
 					
 					/* Ingrédients (en entrée) */
-					HashMap<DSPComponent, Float> input = new HashMap<>();
+					ArrayList<Ingredient> input = new ArrayList<>();
 					NodeList nl_input = getElementsSafe(el_input, "*");
 					for (int i = 0; i < nl_input.getLength(); i++) {
 						String in_id = nl_input.item(i).getNodeName();
 						DSPComponent c = game.getGameItems().get(in_id);
 						if (c == null) throw new RecipeException("Erreur : composant de recette invalide");
 						float qty = parseFloatSafe(getTextContentSafe(getElementSafe(el_input, in_id)));
-				        input.put(c, qty);
+				        input.add(new Ingredient(c, qty));
 					}
 					
 					/* Produits (en sortie) */
-					HashMap<DSPComponent, Float> output = new HashMap<>();
+					ArrayList<Ingredient> output = new ArrayList<>();
 					if (el_output != null) {
 						NodeList nl_output = getElementsSafe(el_output, "*");
 						for (int i = 0; i < nl_output.getLength(); i++) {
@@ -228,12 +228,12 @@ public class DSPParser implements ApplicationRunner {
 							DSPComponent c = game.getGameItems().get(out_id);
 							if (c == null) throw new RecipeException("Erreur : composant de recette invalide");
 							float qty = parseFloatSafe(getTextContentSafe(getElementSafe(el_output, out_id)));
-					        output.put(c, qty);
+					        output.add(new Ingredient(c, qty));
 						}
 					} else {
 						DSPComponent c = game.getGameItems().get(id);
 						if (c == null) throw new RecipeException("Erreur : composant de recette invalide");
-						output.put(c, (float) 1);
+						output.add(new Ingredient(c, (float) 1));
 					}
 					
 					Recipe recipe = new Recipe(id, name, time, producers, input, output);

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title><th:block th:text="${r.name}"/> (Recette) - Dyson Sphere Project Calculator</title>
+	<link th:href="@{/css/dsp-calculator.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="content">
+	    <a th:href="@{/recipes}" class="btn-return">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+				<path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+			</svg>
+			<span>Retour</span>
+		</a>
+		<div>
+			<h1 class="mb-5 text-3xl font-extrabold">Fiche recette</h1>
+			<div class="font-[Ubuntu_Sans_Mono] grid grid-cols-1 md:grid-cols-2">
+				<p class="md:col-start-1 md:row-start-1">Identifiant&nbsp;: <th:block th:text="${r.id}"/></p>
+				<p class="md:col-start-1 md:row-start-2">Nom commun&nbsp;: <th:block th:text="${r.name}"/></p>
+				<p class="md:col-start-2 md:row-start-2">Catégorie des éléments produits&nbsp;:
+					<th:block th:text="${#strings.listJoin(r.outputClassStringPretty, ', ')}"></th:block>
+				</p>
+				<p class="md:col-span-2">Produits&nbsp;:</p>
+				<ul class='list-["–"] list-outside pl-10'>
+					<li class="pl-5" th:each="i : ${r.output}">
+						<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.ingredient.name}"></a>
+					</li>
+				</ul>
+				<p class="md:col-span-2">Ingrédients&nbsp;:</p>
+				<ul class='list-["–"] list-outside pl-10'>
+					<li class="pl-5" th:each="i : ${ingredients}">
+						<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.ingredient.name}"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+
+	</script>
+</body>
+</html>
