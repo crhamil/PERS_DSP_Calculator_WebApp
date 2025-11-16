@@ -25,13 +25,13 @@
 				<p class="md:col-span-2">Produits&nbsp;:</p>
 				<ul class='list-["–"] list-outside pl-10'>
 					<li class="pl-5" th:each="i : ${r.output}">
-						<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.ingredient.name}"></a>
+						<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.component.name}"></a>
 					</li>
 				</ul>
 				<p class="md:col-span-2">Ingrédients&nbsp;:</p>
 				<ul class='list-["–"] list-outside pl-10'>
 					<li class="pl-5" th:each="i : ${ingredients}">
-						<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.ingredient.name}"></a>
+						<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.component.name}"></a>
 					</li>
 				</ul>
 			</div>

@@ -33,12 +33,12 @@
 			    		</td>
 						<td class="text-nowrap">
 							<th:block th:each="i, iter : ${r.value.output}">
-								<th:block th:text="${i.ingredient.name}"></th:block><th:block th:if="${!iter.last}">, </th:block>
+								<th:block th:text="${i.component.name}"></th:block><th:block th:if="${!iter.last}">, </th:block>
 							</th:block>
 						</td>
 						<td class="text-wrap">
 							<th:block th:each="i, iter : ${r.value.ingredients}">
-								<th:block th:text="${i.ingredient.name}"></th:block><th:block th:if="${!iter.last}">, </th:block>
+								<th:block th:text="${i.component.name}"></th:block><th:block th:if="${!iter.last}">, </th:block>
 							</th:block>
 						</td>
 					</tr>
