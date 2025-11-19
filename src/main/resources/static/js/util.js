@@ -1,3 +1,32 @@
+// --------------------------------------------------------------------------------- Accordion
+function collapse(elt, _hide=false) {
+	var next = $(elt).next();
+	if(next.is(":visible") || _hide == true) hide($(elt), next);
+	else show($(elt), next);
+}
+
+function hide(elt, next) {
+	elt.find(".collapsible-symbol").html("+");
+	elt.next().find(".collapsible").each(function() { collapse($(this), true); });
+	next.hide();
+}
+
+function show(elt, next) {
+	elt.find(".collapsible-symbol").html("–");
+	next.show();
+}
+
+$(document).ready(function() {
+	var collapsible_elts = $(".collapsible");
+	collapsible_elts.next().hide();
+	collapsible_elts.on("click", function() {
+		collapse($(this));
+	})
+});
+
+// --------------------------------------------------------------------------------- DataTables
+
+
 /** 
  * Définit le sélecteur d'une colonne DataTable, qui permet de filtrer selon la valeur de la colonne
  * @param {Object} c une colonne d'un tableau DataTable

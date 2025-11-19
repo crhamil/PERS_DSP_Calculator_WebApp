@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.dsp_calculator.dsp_calculator.models.recipes.Recipe;
 import com.dsp_calculator.dsp_calculator.utilities.Game;
+import com.dsp_calculator.strategies.visitor.RecipeTree;
 
 @Service
 public class RecipeService {
@@ -13,4 +14,6 @@ public class RecipeService {
 	public HashMap<String, Recipe> getAllRecipes() { return Game.getInstance().getRecipes(); }
 	public int getRecipeCount() { return getAllRecipes().size(); }
 	public Recipe getRecipe(String id) { return Game.getInstance().getRecipe(id); }
+	public RecipeTree getRecipeTree(Recipe r) { return new RecipeTree(r); }
+
 }

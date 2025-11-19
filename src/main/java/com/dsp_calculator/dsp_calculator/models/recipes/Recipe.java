@@ -2,7 +2,6 @@ package com.dsp_calculator.dsp_calculator.models.recipes;
 
 import java.util.ArrayList;
 
-import com.dsp_calculator.dsp_calculator.models.components.Building;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.Factory;
 
 public class Recipe implements Comparable<Recipe> {
@@ -27,27 +26,8 @@ public class Recipe implements Comparable<Recipe> {
 	}
 	
 	@Override
-	public String toString() {
-	    StringBuilder sb = new StringBuilder();
-	    sb.append("Recette {\n");
-	    sb.append("  ID       : ").append(id).append("\n");
-	    sb.append("  Nom      : ").append(name).append("\n");
-	    sb.append("  Temps    : ").append(time).append(" sec\n");
-
-	    sb.append("  Ingrédients :\n");
-	    in.forEach((i) -> sb.append("    - ").append(i).append(" x ").append(i.getQuantity()).append("\n"));
-
-	    sb.append("  Produits :\n");
-	    out.forEach((i) -> sb.append("    - ").append(i).append(" x ").append(i.getQuantity()).append("\n"));
-
-	    sb.append("  Producteurs :\n");
-	    for (Building b : producers) {
-	        sb.append("    - ").append(b).append("\n");
-	    }
-
-	    sb.append("}");
-	    return sb.toString();
-	}
+	public String toString() { return "Recette " + name; }
+	public float getTime() { return time; }
 	
 	/* Implémente Comparable par facilité (dans la majorité des cas, on voudra getName croissant
 	 * Un comparateur personnalisé sera utilisé en cas de besoin */

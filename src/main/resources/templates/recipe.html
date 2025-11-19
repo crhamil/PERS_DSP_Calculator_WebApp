@@ -5,14 +5,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title><th:block th:text="${r.name}"/> (Recette) - Dyson Sphere Project Calculator</title>
 	<link th:href="@{/css/dsp-calculator.min.css}" rel="stylesheet">
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+	<script th:src="@{/js/util.min.js}"></script>
 </head>
 <body>
 	<div class="content">
-	    <a th:href="@{/recipes}" class="btn-return">
+	    <a th:href="@{/}" class="btn-return">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
 				<path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 			</svg>
-			<span>Retour</span>
+			<span>Accueil</span>
 		</a>
 		<div>
 			<h1 class="mb-5 text-3xl font-extrabold">Fiche recette</h1>
@@ -22,24 +24,25 @@
 				<p class="md:col-start-2 md:row-start-2">Catégorie des éléments produits&nbsp;:
 					<th:block th:text="${#strings.listJoin(r.outputClassStringPretty, ', ')}"></th:block>
 				</p>
-				<p class="md:col-span-2">Produits&nbsp;:</p>
-				<ul class='list-["–"] list-outside pl-10'>
-					<li class="pl-5" th:each="i : ${r.output}">
-						<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.component.name}"></a>
-					</li>
-				</ul>
-				<p class="md:col-span-2">Ingrédients&nbsp;:</p>
-				<ul class='list-["–"] list-outside pl-10'>
-					<li class="pl-5" th:each="i : ${ingredients}">
-						<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.component.name}"></a>
-					</li>
-				</ul>
+				<p class="md:col-start-2 md:row-start-3">Temps de production&nbsp;: <th:block th:text="${r.time}"/> ms</p>
+				<div class="md:col-start-1 md:row-start-3">
+					<p>Produits&nbsp;:</p>
+					<ul class='list-["–"] list-outside pl-10'>
+						<li class="pl-5" th:each="i : ${r.output}">
+							<th:block th:text="${i.quantity}"/>&#9;<a th:href="${i.url}" th:text="${i.component.name}"></a>
+						</li>
+					</ul>
+				</div>
+				<div class="md:col-span-2">
+					<p>Ingrédients&nbsp;:</p>
+					<ul class="pr-10 bg-indigo-50 p-1">
+						<li class="pl-5" th:each="i : (${ingredientsTree.root.children})">
+							<th:block th:replace="~{fragments/recipe-info :: tree(${i})}"></th:block>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-	
-	<script>
-
-	</script>
 </body>
 </html>

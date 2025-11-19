@@ -37,10 +37,12 @@ public class RecipeController {
 	public String recipeDetails(Model model, @PathVariable String id) {
 		Recipe recipe = service.getRecipe(id);
 		var ingredients = recipe.getIngredients();
+		var ingredientsTree = service.getRecipeTree(recipe);
 		
 		model.addAttribute("appName", appName);
 		model.addAttribute("r", recipe);
 		model.addAttribute("ingredients", ingredients);
+		model.addAttribute("ingredientsTree", ingredientsTree);
 		return "recipe";
 	}
 	

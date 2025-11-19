@@ -11,7 +11,6 @@ import com.dsp_calculator.dsp_calculator.models.components.Fuel;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.Extractor;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.Factory;
 import com.dsp_calculator.dsp_calculator.models.components.buildings.PowerPlant;
-import com.dsp_calculator.dsp_calculator.models.recipes.Ingredient;
 import com.dsp_calculator.dsp_calculator.models.recipes.Recipe;
 
 public class Game {
@@ -108,44 +107,6 @@ public class Game {
         Collections.sort(list, comparator);
         return list;
     }
-	
-    
-	/* TODO: Retourner une structure avec des recettes, de type List<List......> */
-	public void getRecipesByComponentRecursive(Ingredient c, ArrayList<Ingredient> visited, int indent) {
-		if (visited.contains(c)) return;
-		visited.add(c);
-		ArrayList<Recipe> recipes = getRecipesByComponent(c);
-		if (recipes.isEmpty()) return;
-		for (Recipe r : recipes) {
-			printIndent(indent);
-			System.out.println("- " + r.getId() + ", entrées : ");
-			ArrayList<Ingredient> inputs = r.getIngredients();
-			for (Ingredient in : inputs) {
-				printIndent(indent + 1);
-				System.out.println("- " + in.getComponent().getId() + " x" + in.getQuantity());
-				getRecipesByComponentRecursive(in, visited, indent + 2);
-			}
-		}
-		
-	}
-	
-	public void printIndent(int level) {
-	    for (int i = 0; i < level; i++) System.out.print("\t");
-	}
-	
-	public ArrayList<Recipe> getRecipesByComponent(Ingredient c) {
-		ArrayList<Recipe> componentRecipes = new ArrayList<>();
-		ArrayList<Recipe> allRecipes = getList(recipes.values(), null);
-		for (Recipe r : allRecipes) {
-			ArrayList<Ingredient> outputs = r.getOutput();
-			for (Ingredient cOut : outputs) {
-				if (cOut.getComponent().getId() == c.getComponent().getId()) {
-					componentRecipes.add(r);
-				}
-			}
-		}
-		return componentRecipes;
-	}
 	
 	/* TODO: Params devront être les paramètres d'une requête, de sorte que [{name: asc}, {category: desc}] par ex */
 	public ArrayList<DSPComponent> allNotBuildingsSorted(String ... params) {

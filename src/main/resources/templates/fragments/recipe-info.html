@@ -1,0 +1,18 @@
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:fragment="tree(node)">
+	<button class="collapsible cursor-pointer bg-indigo-100 rounded-md m-1 w-full text-left" th:if="${node.children.size > 0}">
+		<span class="collapsible-symbol">+</span>
+		<span class="pl-10">
+			<th:block th:text="${node.quantity}"/>&#9;
+			<th:block th:text="${node.recipeName}"/>
+			<a th:href="${node.url}"><sup>?</sup></a>
+		</span>
+	</button>
+	<div class="pl-15 m-1" th:if="${node.children.size <= 0}">
+		<th:block th:text="${node.quantity}"/>&#9;<a th:href="${node.url}" th:text="${node.recipeName}"></a>
+	</div>
+	<ul class="list-outside">
+		<li class="pl-15" th:each="i : ${node.children}"><th:block th:replace="~{this :: tree(${i})}"></th:block></li>
+	</ul>
+</th:block>
+</html>
